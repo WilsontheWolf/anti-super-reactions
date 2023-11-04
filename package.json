@@ -1,0 +1,12 @@
+{
+  "name": "anti-super-reactions",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "WilsontheWolf (https://shorty.systems/)",
+  "license": "Unlicense",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@projectdysnomia/dysnomia": "github:projectdysnomia/dysnomia#feat/burst-reactions"
+  }
+}
