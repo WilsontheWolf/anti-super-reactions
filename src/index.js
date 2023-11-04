@@ -1,15 +1,23 @@
 import { Client, Constants } from '@projectdysnomia/dysnomia';
 import { readFile } from 'fs/promises';
 
-let token = await readFile('./token', 'utf-8')
-    .catch((e) => console.error('Error reading token file:', e));
 
-if(!token) {
+let token = process.env.TOKEN;
+
+if (!token) {
+    console.log('No token found in environment, checking for token file...');
+    token = await readFile('./token', 'utf-8')
+        .catch((e) => console.error('Error reading token file:', e));
+} else {
+    console.log('Token found in environment');
+}
+
+if (!token) {
     console.error('No token found! Exiting...');
     process.exit(1);
 }
 
-if(!token.startsWith('Bot ')) {
+if (!token.startsWith('Bot ')) {
     token = `Bot ${token}`;
 }
 

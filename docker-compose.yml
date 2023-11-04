@@ -1,0 +1,10 @@
+version: '3.5'
+
+services:
+  bot:
+    image: ghcr.io/wilsonthewolf/anti-super-reactions:latest
+    container_name: anti-super-reactions
+    environment:
+      - TOKEN=your-token-here
+    restart: unless-stopped
+    stop_grace_period: 10s
