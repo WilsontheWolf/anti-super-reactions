@@ -41,8 +41,9 @@ client.on('ready', () => {
 client.on('messageReactionAdd', (msg, emoji, reactor, isBurst) => {
     if (!isBurst) return;
     const perms = msg.channel?.permissionsOf?.(client.user.id);
-    if (!perms?.has(Constants.Permissions.manageMessages)) return;
-    client.removeMessageReaction(msg.channel.id, msg.id, emoji.id || emoji.name, reactor.id).catch((err) => {
+    let emojiID = emoji.id ? `${emoji.name}:${emoji.id}` : emoji.name;
+    if (!perms?.has(Constants.Permissions.manageMessages) || !perms?.has(Constants.Permissions.readMessageHistory)) return;
+    client.removeMessageReaction(msg.channel.id, msg.id, emojiID, reactor.id).catch((err) => {
         console.error(err);
     });
 });
